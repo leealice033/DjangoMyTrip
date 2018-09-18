@@ -17,10 +17,11 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 from django.urls import path
-from trips.views import hello_world, home, post_detail
+from trips.views import hello_world, home, post_detail, getimage
 urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^hello/$', hello_world),
     url(r'^$', home),
     url(r'^post/(?P<pk>\d+)/$', post_detail, name = 'post_detail'),
+    url(r'^getimg/$', getimage),
 ]
