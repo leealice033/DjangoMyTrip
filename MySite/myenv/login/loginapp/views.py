@@ -23,10 +23,10 @@ def adduser(request):
 		return redirect('/admin/') #if 建立帳號成功，重新導向至admin頁面
 
 def login(request):
-	if request.method == 'POST':
-		name = request.POST['username']
-		password = request.POST['password']
-		user = auth.authenticate(username = name, password = password)
+	if request.method == 'POST':  #如果是 <login.html> 按登入鈕傳送
+		name = request.POST['username'] 
+		password = request.POST['password'] #取得表單傳送的帳號、密碼
+		user = auth.authenticate(username = name, password = password) #使用者驗證
 		if user is not None:
 			if user.is_active:
 				auth.login(request,user)
@@ -38,5 +38,9 @@ def login(request):
 	return render(request, "login.html", locals()) #登入失敗則重新導入login 頁面
 
 def logout(request):
-	auth.logout(request)
+	auth.logout(request)  #登出成功清除 Session，重導到<index.html>
 	return redirect('/index/')
+
+def index(request):
+	return render(request, 'index.html')
+
